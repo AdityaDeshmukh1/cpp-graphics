@@ -30,6 +30,10 @@ class Screen{
         SDL_RenderPresent(renderer);
     }
 
+    void clear(){
+        points.clear();
+    }
+
     void input(){
         while(SDL_PollEvent(&e)){
             if(e.type == SDL_QUIT){
