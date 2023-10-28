@@ -53,15 +53,31 @@ int main(){
     };
 
 
+    // Calculate the Centroid of the Cube
+    vec3 centroid{0, 0, 0};
+    for(auto& p : points){
+        centroid.x += p.x;
+        centroid.y += p.y;
+        centroid.z += p.z;
+    }
+    centroid.x /= points.size();
+    centroid.y /= points.size();
+    centroid.z /= points.size();
+
+
     while(true){
 
         for(auto& p : points){
+            p.x -= centroid.x;
+            p.y -= centroid.y;
+            p.z -= centroid.z;
             rotate(p, 0.002, 0.001, 0.004);
-        }
-
-        for(auto& p : points){
+            p.x += centroid.x;
+            p.y += centroid.y;
+            p.z += centroid.z;
             screen.pixel(p.x, p.y);
         }
+
         screen.show();
         screen.clear();
 
